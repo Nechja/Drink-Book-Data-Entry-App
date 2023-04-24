@@ -1,0 +1,8 @@
+﻿<maui:MauiWinUIApplication
+    x:Class="Drink_Book_Data_Entry_App.WinUI.App"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:maui="using:Microsoft.Maui"
+    xmlns:local="using:Drink_Book_Data_Entry_App.WinUI">
+
+</maui:MauiWinUIApplication>
