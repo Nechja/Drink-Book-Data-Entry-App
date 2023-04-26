@@ -4,8 +4,10 @@
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:models="clr-namespace:Drink_Book_Data_Entry_App.Models"
-    Title="EntryView">
-    <Grid>
+    xmlns:viewmodel="clr-namespace:Drink_Book_Data_Entry_App.ViewModels"
+    Title="EntryView"
+    x:DataType="viewmodel:DataEntryViewModel">
+    <Grid x:Name="AllGrid" Margin="0,33,0,0">
         <Grid.RowDefinitions>
             <RowDefinition Height="2" />
             <RowDefinition Height="50" />
@@ -20,7 +22,7 @@
             <RowDefinition Height="50" />
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="40" />
             <ColumnDefinition Width="*" />
             <ColumnDefinition Width="40" />
             <ColumnDefinition Width="*" />
@@ -31,35 +33,43 @@
         <Entry
             Grid.Row="1"
             Grid.Column="1"
-            Placeholder="Name" />
+            Placeholder="Name"
+            Text="{Binding Name}" />
         <Entry
             Grid.Row="2"
             Grid.Column="1"
-            Placeholder="Mod" />
+            Placeholder="Mod"
+            Text="{Binding Mod}" />
         <Entry
             Grid.Row="3"
             Grid.Column="1"
-            Placeholder="Glassware" />
+            Placeholder="Glassware"
+            Text="{Binding Glassware}" />
         <Entry
             Grid.Row="4"
             Grid.Column="1"
-            Placeholder="Ice" />
+            Placeholder="Ice"
+            Text="{Binding Ice}" />
         <Entry
             Grid.Row="5"
             Grid.Column="1"
-            Placeholder="Garnish" />
+            Placeholder="Garnish"
+            Text="{Binding Garnish}" />
         <Entry
             Grid.Row="6"
             Grid.Column="1"
-            Placeholder="Link" />
+            Placeholder="Link"
+            Text="{Binding Link}" />
         <Entry
             Grid.Row="7"
             Grid.Column="1"
-            Placeholder="Tags" />
+            Placeholder="Tags"
+            Text="{Binding DrinkTags}" />
         <Entry
             Grid.Row="8"
             Grid.Column="1"
-            Placeholder="Image" />
+            Placeholder="Image"
+            Text="{Binding Image}" />
         <StackLayout
             x:Name="IngredientEntryStack"
             Grid.Row="1"
@@ -67,35 +77,61 @@
             Grid.Column="3"
             Grid.ColumnSpan="1">
             <Label Text="Ingredient Entry" />
-            <Entry Placeholder="Name" />
-            <Entry Placeholder="Type" />
-            <Entry Placeholder="oz" />
-            <Entry Placeholder="Special" />
+            <Entry Placeholder="Name" Text="{Binding IngredientName}" />
+            <Entry Placeholder="Type" Text="{Binding IngType}" />
+            <Entry Placeholder="oz" Text="{Binding IngredientOz}" />
+            <Entry Placeholder="Special" Text="{Binding IngredientSpecial}" />
+            <Entry Placeholder="Tags" Text="{Binding IngredientTags}" />
             <Button
                 Margin="5,20,5,5"
                 BackgroundColor="DimGrey"
+                Clicked="Ing_Clicked"
+                Command="{Binding AddIngredientCommand}"
                 HorizontalOptions="CenterAndExpand"
                 Text="Add Ingredient ---&gt;"
                 TextColor="AntiqueWhite" />
         </StackLayout>
-
         <StackLayout
             Grid.Row="1"
             Grid.RowSpan="8"
             Grid.Column="4"
             Grid.ColumnSpan="2">
             <Label Text="Ingredients In Drink" />
-            <CollectionView x:DataType="models:Drink">
+            <CollectionView x:Name="ingCollection" x:DataType="models:Ingredient">
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
-                        <HorizontalStackLayout>
-                            <Label Text="{Binding Name}" />
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="50" />
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="200" />
+                                <ColumnDefinition Width="50" />
+                            </Grid.ColumnDefinitions>
+                            <Label
+                                Grid.Row="0"
+                                Grid.Column="0"
+                                Grid.ColumnSpan="2"
+                                Margin="5,0,0,2"
+                                Padding="4"
+                                FontSize="Medium"
+                                Text="{Binding Name}"
+                                VerticalOptions="Center" />
                             <Button
-                                Margin="5,20,5,5"
+                                Grid.Row="0"
+                                Grid.Column="1"
+                                Grid.ColumnSpan="2"
                                 BackgroundColor="DimGrey"
-                                Text="Remove"
-                                TextColor="AntiqueWhite" />
-                        </HorizontalStackLayout>
+                                Clicked="Remove_Clicked"
+                                CommandParameter="{Binding .}"
+                                HeightRequest="2"
+                                HorizontalOptions="Fill"
+                                MaximumHeightRequest="2"
+                                MaximumWidthRequest="2"
+                                Text="-"
+                                TextColor="Red"
+                                VerticalOptions="Fill" />
+                        </Grid>
                     </DataTemplate>
                 </CollectionView.ItemTemplate>
             </CollectionView>
@@ -106,9 +142,33 @@
             Grid.Column="1"
             Grid.ColumnSpan="4"
             BackgroundColor="DimGrey"
+            Command="{Binding AddDrinkCommand}"
             HorizontalOptions="Fill"
             Text="Add Drink"
             TextColor="AntiqueWhite" />
+        <Editor
+            Grid.Row="0"
+            Grid.RowSpan="8"
+            Grid.Column="5"
+            Placeholder="Notes"
+            Text="{Binding Notes}" />
+        <Button
+            Grid.Row="11"
+            Grid.Column="5"
+            Grid.ColumnSpan="1"
+            BackgroundColor="DimGrey"
+            Clicked="Clear_Clicked"
+            HorizontalOptions="Fill"
+            Text="Clear all"
+            TextColor="AntiqueWhite" />
+
+
+        <Entry
+            x:Name="errorpass"
+            IsReadOnly="True"
+            IsVisible="False"
+            Text="{Binding Error}"
+            TextChanged="errorpass_TextChanged" />
 
 
 

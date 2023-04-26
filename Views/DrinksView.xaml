@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="Drink_Book_Data_Entry_App.Views.DrinksView"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:models="clr-namespace:Drink_Book_Data_Entry_App.Models"
+    xmlns:viewmodel="clr-namespace:Drink_Book_Data_Entry_App.ViewModels"
+    Title="DrinksView">
+    <StackLayout>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <CollectionView
+                x:Name="DrinkCollectionView"
+                Grid.Row="0"
+                Grid.Column="0"
+                Margin="30"
+                x:DataType="models:Drink"
+                HeightRequest="400">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="50" />
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="100" />
+                                <ColumnDefinition Width="50" />
+                            </Grid.ColumnDefinitions>
+                            <Label
+                                Grid.Column="0"
+                                Grid.ColumnSpan="2"
+                                Text="{Binding Name}" />
+                            <Button
+                                Grid.Row="0"
+                                Grid.Column="3"
+                                BackgroundColor="Red"
+                                Clicked="Remove_Clicked"
+                                CommandParameter="{Binding .}"
+                                HeightRequest="2"
+                                HorizontalOptions="Fill"
+                                Text="-"
+                                TextColor="WhiteSmoke"
+                                VerticalOptions="Fill" />
+                        </Grid>
+
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </Grid>
+        <Button
+            x:Name="AddDrinkBtn"
+            Clicked="AddDrinkBtn_Clicked"
+            Text="Add Drink" />
+    </StackLayout>
+</ContentPage>

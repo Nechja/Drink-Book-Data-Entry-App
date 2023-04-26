@@ -14,7 +14,7 @@ public class Drink
     public string? Ice { get; set; }
     public string? Garnish { get; set; }
     public string? Notes { get; set; }
-    public Uri? Link { get; set; }
+    public string? Link { get; set; }
     public string? Imgs { get; set; }
 
     public List<string> Tags { get; set; } = new List<string>();

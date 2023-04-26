@@ -11,7 +11,7 @@ public class Ingredient
 {
     public string Name { get; set; }
     public float? Oz { get; set; }
-    public string? Finish { get; set; }
+    public string? Special { get; set; }
     public string? Type { get; set; }
     public List<string>? Tags { get; set; } = new List<string>();
 
