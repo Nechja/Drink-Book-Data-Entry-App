@@ -55,9 +55,5 @@
                 </CollectionView.ItemTemplate>
             </CollectionView>
         </Grid>
-        <Button
-            x:Name="AddDrinkBtn"
-            Clicked="AddDrinkBtn_Clicked"
-            Text="Add Drink" />
     </StackLayout>
 </ContentPage>

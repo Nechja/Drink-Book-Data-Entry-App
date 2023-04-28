@@ -9,8 +9,8 @@
     <TabBar>
         <ShellContent
             Title="Data Entry"
-            ContentTemplate="{DataTemplate views:DrinksView}"
-            Route="DrinksView" />
+            ContentTemplate="{DataTemplate views:MenuView}"
+            Route="MenuView" />
 
     </TabBar>
 

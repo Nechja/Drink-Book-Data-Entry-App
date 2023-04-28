@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.Logging;
+﻿using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Logging;
 
 namespace Drink_Book_Data_Entry_App;
 
@@ -14,11 +15,13 @@ public static class MauiProgram
 				fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
 				fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
 			});
-		builder.Services.AddSingleton<Views.DrinksView>();
+		builder.Services.AddTransient<Views.DrinksView>();
 		builder.Services.AddSingleton<Views.EntryView>();
+		builder.Services.AddSingleton<Views.MenuView>();
 
 
 		builder.Services.AddSingleton<ViewModels.DataEntryViewModel>();
+		builder.Services.AddSingleton<ViewModels.MenuViewModel>();
 
 
 #if DEBUG

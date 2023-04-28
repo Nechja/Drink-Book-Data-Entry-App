@@ -20,6 +20,9 @@
             <RowDefinition Height="50" />
             <RowDefinition Height="10" />
             <RowDefinition Height="50" />
+            <RowDefinition Height="50" />
+            <RowDefinition Height="50" />
+            <RowDefinition Height="50" />
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="40" />
@@ -138,7 +141,7 @@
         </StackLayout>
 
         <Button
-            Grid.Row="11"
+            Grid.Row="12"
             Grid.Column="1"
             Grid.ColumnSpan="4"
             BackgroundColor="DimGrey"
@@ -153,7 +156,7 @@
             Placeholder="Notes"
             Text="{Binding Notes}" />
         <Button
-            Grid.Row="11"
+            Grid.Row="12"
             Grid.Column="5"
             Grid.ColumnSpan="1"
             BackgroundColor="DimGrey"

@@ -38,9 +38,4 @@ public partial class DrinksView : ContentPage
         }
 
     }
-
-    private async void AddDrinkBtn_Clicked(object sender, EventArgs e)
-    {
-        await Shell.Current.GoToAsync(nameof(EntryView));
-    }
 }

@@ -1,4 +1,5 @@
-﻿using CommunityToolkit.Mvvm.ComponentModel;
+﻿
+using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using Drink_Book_Data_Entry_App.Models;
 using Drink_Book_Data_Entry_App.Views;
@@ -17,6 +18,9 @@ namespace Drink_Book_Data_Entry_App.ViewModels
 
         public ObservableCollection<Models.Ingredient> ingredients { get; set; } = new ObservableCollection<Models.Ingredient>();
         public Models.Drink Drink { get; set; }
+
+
+
 
         [ObservableProperty]
         private string name;
@@ -122,6 +126,7 @@ namespace Drink_Book_Data_Entry_App.ViewModels
             drink.Tags = DrinkTags?.Split(',').Select(t => t.Trim()).Where(t => !string.IsNullOrWhiteSpace(t)).ToList() ?? new List<string>();
             drink.Imgs = Image?.Trim() ?? string.Empty;
             drink.Notes = Notes?.Trim() ?? string.Empty;
+            drink.Ingredients = ingredients.ToList<Models.Ingredient>();
 
             // Add the Drink object to the data store
             try
