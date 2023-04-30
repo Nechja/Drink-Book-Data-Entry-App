@@ -12,7 +12,7 @@ public partial class EntryView : ContentPage
         vm = modelView;
         InitializeComponent();
 		BindingContext = vm;
-        
+        Application.Current.UserAppTheme = AppTheme.Dark;
         ingCollection.ItemsSource = vm.ingredients;
     }
 

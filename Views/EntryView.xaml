@@ -172,11 +172,6 @@
             IsVisible="False"
             Text="{Binding Error}"
             TextChanged="errorpass_TextChanged" />
-
-
-
-
-
     </Grid>
 
 </ContentPage>

@@ -8,6 +8,7 @@ public partial class DrinksView : ContentPage
 	public DrinksView()
 	{
 		InitializeComponent();
+        Application.Current.UserAppTheme = AppTheme.Dark;
         List<Models.Drink> drinksList = Services.DataStore.GetDrinks();
         foreach(Models.Drink drink in drinksList)
         {

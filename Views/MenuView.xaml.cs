@@ -8,5 +8,6 @@ public partial class MenuView : ContentPage
 	{
 		InitializeComponent();
 		BindingContext = viewModel;
+		Application.Current.UserAppTheme = AppTheme.Dark;
 	}
 }
