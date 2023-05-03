@@ -15,9 +15,11 @@ namespace Drink_Book_Data_Entry_App.ViewModels
 {
     public partial class DataEntryViewModel : ObservableObject
     {
+        public event EventHandler IngredientClear;
 
-        public ObservableCollection<Models.Ingredient> ingredients { get; set; } = new ObservableCollection<Models.Ingredient>();
-        public Models.Drink Drink { get; set; }
+
+        public ObservableCollection<Ingredient> ingredients { get; set; } = new ObservableCollection<Models.Ingredient>();
+        public Drink Drink { get; set; }
 
 
 
@@ -96,6 +98,7 @@ namespace Drink_Book_Data_Entry_App.ViewModels
 
             ingredients.Add(ingredient);
             Console.WriteLine("Ingredient added successfully.");
+            IngredientClear.Invoke(this, null);
         }
 
         [RelayCommand]

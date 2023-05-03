@@ -1,4 +1,5 @@
 using CommunityToolkit.Mvvm.ComponentModel;
+using Drink_Book_Data_Entry_App.Models;
 using Drink_Book_Data_Entry_App.ViewModels;
 using System.Collections.ObjectModel;
 
@@ -14,6 +15,12 @@ public partial class EntryView : ContentPage
 		BindingContext = vm;
         Application.Current.UserAppTheme = AppTheme.Dark;
         ingCollection.ItemsSource = vm.ingredients;
+        vm.IngredientClear += Vm_IngredientClear;
+    }
+
+    private void Vm_IngredientClear(object sender, EventArgs e)
+    {
+        ClearAndResetngredientEntryStack();
     }
 
     public EntryView(DataEntryViewModel modelView, Models.Drink drink)
@@ -30,15 +37,16 @@ public partial class EntryView : ContentPage
         ingCollection.ItemsSource = vm.ingredients;
     }
 
-    private void Ing_Clicked(object sender, EventArgs e)
+    private void ClearAndResetngredientEntryStack()
     {
-        foreach(Object o in IngredientEntryStack.Children)
+        foreach (Object o in IngredientEntryStack.Children)
         {
-            if(o is Entry)
+            if (o is Entry)
             {
                 Entry entry = (Entry)o;
                 entry.Text = "";
             }
+            IngredientNameEntry.Focus();
         }
     }
 
@@ -80,5 +88,53 @@ public partial class EntryView : ContentPage
     private async void errorpass_TextChanged(object sender, TextChangedEventArgs e)
     {
         await DisplayAlert("Alert", errorpass.Text, "Okay!");
+    }
+
+    private void Edit_Clicked(object sender, EventArgs e)
+    {
+        if (sender is Button)
+        {
+            Button btn = sender as Button;
+            if (btn.CommandParameter is Models.Ingredient)
+            {
+                Models.Ingredient ingredient = btn.CommandParameter as Models.Ingredient;
+                vm.ingredients.Remove(ingredient);
+                IngredientNameEntry.Text = ingredient.Name;
+                IngredientOzEntry.Text = ingredient.Oz.ToString();
+                IngredientTypeEntry.Text = ingredient.Type;
+                IngredientSpecialEntry.Text = ingredient.Special;
+                string tags = "";
+                foreach(string tag in ingredient.Tags) 
+                { 
+                    tags += tag + ",";
+                }
+                IngredientTagsEntry.Text = tags;
+            }
+
+        }
+
+    }
+
+    private void Copy_Clicked(object sender, EventArgs e)
+    {
+        if (sender is Button)
+        {
+            Button btn = sender as Button;
+            if (btn.CommandParameter is Models.Ingredient)
+            {
+                Models.Ingredient ingredient = btn.CommandParameter as Models.Ingredient;
+                IngredientNameEntry.Text = ingredient.Name;
+                IngredientOzEntry.Text = ingredient.Oz.ToString();
+                IngredientTypeEntry.Text = ingredient.Type;
+                IngredientSpecialEntry.Text = ingredient.Special;
+                string tags = "";
+                foreach (string tag in ingredient.Tags)
+                {
+                    tags += tag + ",";
+                }
+                IngredientTagsEntry.Text = tags;
+            }
+
+        }
     }
 }
