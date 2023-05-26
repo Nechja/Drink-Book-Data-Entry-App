@@ -1,6 +1,6 @@
 # Drink-Book-Data-Entry-App
 
-This application is purpose-made for entering in drinks from my old bar.
+This application is purpose-made for entering in drinks from my old bar to xml.
 
 ### Some Backstory
 
